@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/listFragment"
+        android:name="com.example.myapplication.fragments.list.ListFragment"
+        android:label="List"
+        tools:layout="@layout/fragment_list">
+        <action
+            android:id="@+id/action_listFragment_to_addFragment"
+            app:destination="@id/addFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_updateFragment"
+            app:destination="@id/updateFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addFragment"
+        android:name="com.example.myapplication.fragments.add.AddFragment"
+        android:label="Add new user"
+        tools:layout="@layout/fragment_add">
+        <action
+            android:id="@+id/action_addFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateFragment"
+        android:name="com.example.myapplication.fragments.update.UpdateFragment"
+        android:label="Update user"
+        tools:layout="@layout/fragment_update">
+        <action
+            android:id="@+id/action_updateFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+        <argument
+            android:name="currentUser"
+            app:argType="com.example.myapplication.model.User" />
+    </fragment>
+    <fragment
+        android:id="@+id/postFragment"
+        android:name="com.example.myapplication.fragments.post.PostFragment"
+        android:label="Posts"
+        tools:layout="@layout/fragment_post">
+        <action
+            android:id="@+id/action_postFragment_to_addPostFragment"
+            app:destination="@id/addPostFragment" />
+        <action
+            android:id="@+id/action_postFragment_to_updatePostFragment"
+            app:destination="@id/updatePostFragment" />
+        <action
+            android:id="@+id/action_postFragment_to_postInfoFragment2"
+            app:destination="@id/postInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addPostFragment"
+        android:name="com.example.myapplication.fragments.add.AddPostFragment"
+        android:label="Add new post"
+        tools:layout="@layout/fragment_add_post">
+        <action
+            android:id="@+id/action_addPostFragment_to_postFragment"
+            app:destination="@id/postFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.myapplication.HomeFragment"
+        android:label="Homescreen"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/updatePostFragment"
+        android:name="com.example.myapplication.fragments.update.UpdatePostFragment"
+        android:label="Update post"
+        tools:layout="@layout/fragment_update_post">
+        <action
+            android:id="@+id/action_updatePostFragment_to_postFragment"
+            app:destination="@id/postFragment" />
+        <argument
+            android:name="currentPost"
+            app:argType="com.example.myapplication.model.Post" />
+    </fragment>
+    <fragment
+        android:id="@+id/postInfoFragment"
+        android:name="com.example.myapplication.PostInfoFragment"
+        android:label="fragment_post_info"
+        tools:layout="@layout/fragment_post_info" >
+        <action
+            android:id="@+id/action_postInfoFragment2_to_postFragment"
+            app:destination="@id/postFragment" />
+        <argument
+            android:name="currentPost"
+            app:argType="com.example.myapplication.model.Post" />
+    </fragment>
+</navigation>
