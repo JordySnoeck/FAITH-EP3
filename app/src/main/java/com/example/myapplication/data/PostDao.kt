@@ -24,4 +24,7 @@ interface PostDao {
     @Query("SELECT * FROM post_table ORDER BY id ASC")
     fun readAllPosts(): LiveData<List<Post>>
 
+    @Query("SELECT * FROM post_table WHERE email = :key")
+    fun readPostFromUser(key: String): LiveData<List<Post>>
+
 }

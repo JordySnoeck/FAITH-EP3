@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:title="Users"
-        android:id="@+id/listFragment"
+        android:id="@+id/profileFragment"
         android:icon="@drawable/ic_baseline_person_24"/>
 
     <item android:title="Home"
@@ -13,5 +13,10 @@
         android:id="@+id/postFragment"
         android:icon="@drawable/ic_baseline_message_24"
         android:title="Post" />
+
+    <item
+        android:id="@+id/memeFragment"
+        android:icon="@drawable/ic_baseline_emoji_emotions_24"
+        android:title="Meme" />
 
 </menu>

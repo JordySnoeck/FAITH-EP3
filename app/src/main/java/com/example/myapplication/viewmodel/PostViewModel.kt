@@ -6,7 +6,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.example.myapplication.data.MainDatabase
 import com.example.myapplication.model.Post
-import com.example.myapplication.data.PostDatabase
 import com.example.myapplication.repository.PostRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -44,5 +43,9 @@ class PostViewModel(application: Application): AndroidViewModel(application) {
         viewModelScope.launch(Dispatchers.IO) {
             pRepository.deleteAllPosts()
         }
+    }
+
+    fun getPostsByEmail(email: String): LiveData<List<Post>> {
+        return pRepository.getPostsByEmail(email)
     }
 }

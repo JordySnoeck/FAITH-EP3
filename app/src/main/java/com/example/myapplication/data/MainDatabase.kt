@@ -10,8 +10,8 @@ import com.example.myapplication.model.Post
 import com.example.myapplication.model.User
 
 
-@Database(entities = [Comment::class, Post::class, User::class], version = 1 , exportSchema = false)
-@TypeConverters(DateConverter::class, Converters::class)
+@Database(entities = [Comment::class, Post::class, User::class], version = 2 , exportSchema = false)
+@TypeConverters(Converters::class)
 abstract class MainDatabase : RoomDatabase() {
 
     abstract val userDao : UserDao

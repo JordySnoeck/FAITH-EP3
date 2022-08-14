@@ -3,6 +3,7 @@ package com.example.myapplication.repository
 import androidx.lifecycle.LiveData
 import com.example.myapplication.model.Post
 import com.example.myapplication.data.PostDao
+import com.example.myapplication.model.User
 
 class PostRepository(private val postDao: PostDao) {
 
@@ -23,4 +24,9 @@ class PostRepository(private val postDao: PostDao) {
     suspend fun deleteAllPosts() {
         postDao.deleteAllPosts()
     }
+
+    fun getPostsByEmail(email: String): LiveData<List<Post>> {
+        return postDao.readPostFromUser(email)
+    }
+
 }

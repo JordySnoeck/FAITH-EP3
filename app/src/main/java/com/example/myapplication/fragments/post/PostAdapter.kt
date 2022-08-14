@@ -38,6 +38,7 @@ class PostAdapter: RecyclerView.Adapter<PostAdapter.MyViewHolder>() {
             val action = PostFragmentDirections.actionPostFragmentToUpdatePostFragment(currentPost)
             holder.itemView.findNavController().navigate(action)
         }
+
     }
 
     override fun getItemCount(): Int {

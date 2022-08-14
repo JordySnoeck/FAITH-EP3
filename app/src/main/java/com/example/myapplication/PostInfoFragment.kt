@@ -1,8 +1,10 @@
 package com.example.myapplication
 
 import android.app.AlertDialog
+import android.content.Context
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,18 +13,30 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.myapplication.fragments.update.CommentAdapter
 import com.example.myapplication.fragments.update.UpdatePostFragmentArgs
+import com.example.myapplication.model.Comment
 import com.example.myapplication.model.Post
+import com.example.myapplication.model.User
+import com.example.myapplication.viewmodel.CommentViewModel
 import com.example.myapplication.viewmodel.PostViewModel
+import com.example.myapplication.viewmodel.UserViewModel
+import kotlinx.android.synthetic.main.fragment_post_info.*
+import kotlinx.android.synthetic.main.fragment_post_info.view.*
 import kotlinx.android.synthetic.main.fragment_update_post.*
 import kotlinx.android.synthetic.main.fragment_update_post.view.*
+import java.util.*
 
 class PostInfoFragment : Fragment() {
 
 
     private val args by navArgs<PostInfoFragmentArgs>()
 
+    private lateinit var mUserViewModel: UserViewModel
     private lateinit var mPostViewModel: PostViewModel
+    private lateinit var mCommentViewModel: CommentViewModel
+    lateinit var user: User
 
 
     override fun onCreateView(
@@ -33,12 +47,48 @@ class PostInfoFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_post_info, container, false)
 
         mPostViewModel = ViewModelProvider(this).get(PostViewModel::class.java)
+        mCommentViewModel = ViewModelProvider(this).get(CommentViewModel::class.java)
+        mUserViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
-        view.update_PostName.setText(args.currentPost.postName)
-        view.update_Text.setText(args.currentPost.postText)
-        view.update_User.setText(args.currentPost.user)
+        val sharedPref = requireActivity().getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+        val email = sharedPref.getString("email","default value")
+        mUserViewModel.getUserByEmail(email.toString()).observe(viewLifecycleOwner){
+            user = User(it.id,it.email,it.profilePhoto,it.firstName,it.lastName,it.age)
+
+
+        val adapter = CommentAdapter()
+        val recyclerView= view.commentSection
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        mCommentViewModel.comments.observe(viewLifecycleOwner, androidx.lifecycle.Observer { comment ->
+            adapter.setData(comment)
+        })
+        }
+
+        view.post_user.setText(args.currentPost.user)
+        view.post_text.setText(args.currentPost.postText)
+        view.imagepost.setImageBitmap(args.currentPost.image)
+
+        view.add_comment.setOnClickListener{
+            addComment()
+        }
+
 
         return view
     }
+
+    private fun addComment(){
+        val postId = args.currentPost.id
+        val commentText = postComment.text.toString()
+        val commentDate =  Date()
+
+        val comment = Comment(0,postId,commentText,commentDate,user.id,user.firstName.plus(" ").plus(user.lastName))
+
+        mCommentViewModel.addComment(comment)
+        Toast.makeText(requireContext(), "Succesfully added comment", Toast.LENGTH_SHORT).show()
+
+    }
+
 
 }

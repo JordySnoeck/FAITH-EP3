@@ -7,45 +7,111 @@
     android:padding="24dp"
     tools:context=".fragments.add.AddPostFragment">
 
+
     <EditText
         android:id="@+id/add_PostName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="353dp"
+        android:layout_height="49dp"
+        android:background="@drawable/custom_input"
         android:ems="10"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:text="POSTNAME"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_User" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Link"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_Text" />
 
     <EditText
         android:id="@+id/add_Text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="354dp"
+        android:layout_height="123dp"
+        android:background="@drawable/custom_input"
         android:ems="10"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:text="TEXT"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.854"
+        app:layout_constraintHorizontal_bias="0.089"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <Button
+        android:id="@+id/addimagepost"
+        android:layout_width="144dp"
+        android:layout_height="52dp"
+        android:text="click here to add image"
+        android:textSize="12dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imagepost" />
+
+    <ImageView
+        android:id="@+id/imagepost"
+        android:layout_width="147dp"
+        android:layout_height="84dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_Link"
+        tools:srcCompat="@tools:sample/avatars" />
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Postname"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.009"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Posttext"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.072"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_PostName" />
 
     <EditText
-        android:id="@+id/add_User"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:id="@+id/add_Link"
+        android:layout_width="353dp"
+        android:layout_height="26dp"
+        android:background="@drawable/custom_input"
         android:ems="10"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:text="USER"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.413"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/link" />
 
     <Button
         android:id="@+id/button2"
@@ -53,7 +119,6 @@
         android:layout_height="wrap_content"
         android:text="Add"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_Text" />
+        app:layout_constraintTop_toBottomOf="@+id/addimagepost" />
 </androidx.constraintlayout.widget.ConstraintLayout>

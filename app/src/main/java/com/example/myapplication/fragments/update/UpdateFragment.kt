@@ -5,17 +5,17 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
 import android.util.Log
-import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Toast
+import android.view.LayoutInflater
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import android.view.ViewGroup
 import com.example.myapplication.R
 import com.example.myapplication.model.User
 import com.example.myapplication.viewmodel.UserViewModel
-import kotlinx.android.synthetic.main.custom_row.view.*
-import kotlinx.android.synthetic.main.fragment_list.view.*
 import kotlinx.android.synthetic.main.fragment_update.*
 import kotlinx.android.synthetic.main.fragment_update.view.*
 
@@ -60,7 +60,7 @@ class UpdateFragment : Fragment() {
         if(inputCheck(firstName,lastName,updateAge_et.text)){
             Log.d("TAG", "TEST3")
             //Create User Object
-            val updatedUser = User(args.currentUser.id,args.currentUser.profilePhoto,firstName,lastName,age)
+            val updatedUser = User(args.currentUser.id,args.currentUser.email,args.currentUser.profilePhoto,firstName,lastName,age)
             // Update current user
             mUserViewModel.updateUser(updatedUser)
             Log.d("TAG", "TEST4")

@@ -7,89 +7,94 @@
     android:padding="24dp"
     tools:context=".fragments.update.UpdatePostFragment">
 
-    <Button
-        android:id="@+id/add_comment"
-        android:layout_width="71dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="4dp"
-        android:text="Send"
-        android:textSize="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
-        app:layout_constraintStart_toEndOf="@+id/postComment"
-        app:layout_constraintTop_toBottomOf="@+id/update_Text" />
-
     <EditText
         android:id="@+id/update_PostName"
-        android:layout_width="364dp"
-        android:layout_height="49dp"
+        android:layout_width="355dp"
+        android:layout_height="60dp"
+        android:background="@drawable/custom_input"
         android:ems="10"
         android:inputType="textPersonName"
         android:minHeight="48dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/update_User" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/update_Text"
-        android:layout_width="364dp"
-        android:layout_height="146dp"
+        android:layout_width="355dp"
+        android:layout_height="140dp"
+        android:background="@drawable/custom_input"
         android:ems="10"
         android:inputType="textPersonName"
         android:minHeight="48dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.854"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/update_PostName" />
 
-    <EditText
+    <!--  <EditText
         android:id="@+id/update_User"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="108dp"
+        android:layout_height="60dp"
+        android:background="@drawable/custom_input"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" /> -->
 
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="124dp"
+        android:layout_marginTop="40dp"
         android:text="Update"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.103"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/postComment" />
+        app:layout_constraintTop_toBottomOf="@+id/commentSection2" />
+
+    <Button
+        android:id="@+id/like_post"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:drawableLeft="@drawable/ic_baseline_favorite_border_24"
+        android:text="Like"
+        app:layout_constraintEnd_toStartOf="@+id/btn_del_post"
+        app:layout_constraintHorizontal_bias="0.606"
+        app:layout_constraintStart_toEndOf="@+id/button2"
+        app:layout_constraintTop_toBottomOf="@+id/commentSection2" />
 
     <Button
         android:id="@+id/btn_del_post"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="164dp"
+        android:layout_marginStart="164dp"
+        android:layout_marginTop="40dp"
         android:text="Delete"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.713"
         app:layout_constraintStart_toEndOf="@+id/button2"
-        app:layout_constraintTop_toBottomOf="@+id/update_Text" />
+        app:layout_constraintTop_toBottomOf="@+id/commentSection2" />
 
-    <EditText
-        android:id="@+id/postComment"
-        android:layout_width="290dp"
-        android:layout_height="42dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Comment"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/commentSection2"
+        android:layout_width="355dp"
+        android:layout_height="209dp"
+        android:background="@drawable/custom_input"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/update_Text"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/update_Text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

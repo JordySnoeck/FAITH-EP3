@@ -1,5 +1,6 @@
 package com.example.myapplication.model
 
+import android.graphics.Bitmap
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -14,6 +15,9 @@ data class Post (
     val id: Int,
     val date: Date,
     val user: String,
+    val email: String,
+    val image: Bitmap,
     val postText: String,
     val postName: String,
+    val favorite: Boolean = false
         ) : Parcelable

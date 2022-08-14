@@ -9,6 +9,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.io.ByteArrayOutputStream
 import java.lang.reflect.Type
+import java.util.*
 
 class Converters {
 
@@ -23,6 +24,16 @@ class Converters {
     @TypeConverter
     fun toBitmap(byteArray: ByteArray): Bitmap{
         return BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
+    }
+
+    @TypeConverter
+    fun toDate(dateLong: Long?): Date? {
+        return if (dateLong == null) null else Date(dateLong)
+    }
+
+    @TypeConverter
+    fun fromDate(date: Date?): Long? {
+        return date?.time
     }
 
 }
