@@ -1,6 +1,5 @@
 package com.example.myapplication
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,7 +9,6 @@ import android.widget.ProgressBar
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import android.graphics.drawable.Drawable
-import android.util.Log
 import android.widget.ImageView
 import com.android.volley.Request
 import com.android.volley.Response
@@ -19,7 +17,6 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
-import com.example.myapplication.databinding.FragmentHomeBinding
 import com.example.myapplication.databinding.FragmentMemeBinding
 
 
@@ -34,7 +31,6 @@ class MemeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
 
         _binding = FragmentMemeBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -43,17 +39,7 @@ class MemeFragment : Fragment() {
 
         binding.next.setOnClickListener { loadMeme() }
 
-        val sharedPref = requireActivity().getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
-        val email = sharedPref.getString("email","default value")
-        Log.d("MEMEMEMEME", email.toString())
-
-
         return view
-
-
-
-
-
     }
 
     fun loadMeme(){

@@ -46,7 +46,6 @@ class AddPostFragment : Fragment() {
     var email: String? = null
     var user: User? = null
     private lateinit var mUserViewModel: UserViewModel
-    private lateinit var button: Button
     private lateinit var imageView: ImageView
 
 
@@ -61,7 +60,6 @@ class AddPostFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_add_post, container, false)
-        button = view.addimagepost
         imageView = view.imagepost
         mPostViewModel = ViewModelProvider(this).get(PostViewModel::class.java)
 
@@ -77,6 +75,8 @@ class AddPostFragment : Fragment() {
             user = User(it.id,it.email,it.profilePhoto,it.firstName,it.lastName,it.age)
         }
 
+
+
         view.addimagepost.setOnClickListener{
             pickImageGallery()
         }
@@ -89,17 +89,22 @@ class AddPostFragment : Fragment() {
         val date = Date()
         val username = user?.firstName.plus(" ").plus(user?.lastName)
         val postText = add_Text.text.toString()
-        val postName = add_PostName.text.toString()
         val image = imagepost
 
-        if(inputCheck(username,postText,postName)){
+        Log.d("USERNAME",username)
+        Log.d("USERNAME",postText.toString())
+
+        if(inputCheck(postText)){
+            Log.d("USERNAME",username)
+            Log.d("USERNAME",postText.toString())
+
             if(image.drawable != null) {
                 val conImage = (image.drawable as BitmapDrawable).bitmap
-                val post = Post(0,date,username,user!!.email,conImage,postText,postName)
+                val post = Post(0,date,username,user!!.email,conImage,postText,false, false,"")
                 mPostViewModel.addPost(post)
             } else {
                 lifecycleScope.launch {
-                    val post = Post(0,date,username,user!!.email,getBitmap(),postText,postName)
+                    val post = Post(0,date,username,user!!.email,getBitmap(),postText,false , false , "")
                     mPostViewModel.addPost(post)
                 }
             }
@@ -110,8 +115,9 @@ class AddPostFragment : Fragment() {
         }
     }
 
-    private fun inputCheck(user : String, postText: String, postName: String): Boolean{
-        return !(TextUtils.isEmpty(user) && TextUtils.isEmpty(postText) && TextUtils.isEmpty(postName))
+    private fun inputCheck(postText: String): Boolean{
+
+        return !( TextUtils.isEmpty(postText))
     }
 
 

@@ -58,7 +58,6 @@ class HomeFragment : Fragment() {
 
         binding.buttonLogin.setOnClickListener { login() }
         binding.buttonLogout.setOnClickListener { logout() }
-        Log.d("CASHEDCREDENTIALS ",cachedCredentials.toString())
 
         checkIfToken()
         showUserProfile()
@@ -69,9 +68,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun checkIfToken(){
-        Log.d("CASHEDCREDENTIALS CHECKIFTOKEN ",cachedCredentials.toString())
         val token = CredentialsManager.getAccessToken(requireContext())
-        Log.d("CHECKIFTOKEN",token.toString())
         if(token != null){
             Log.d("TOKEN","YESSSSSSSSSSSSSS")
         }
@@ -106,10 +103,8 @@ class HomeFragment : Fragment() {
 
                 override fun onSuccess(credentials: Credentials) {
                     cachedCredentials = credentials
-                    Log.d("CREDENTIALS", cachedCredentials.toString())
                     CredentialsManager.saveCredentials(requireContext(), credentials)
                     checkIfToken()
-                    showSnackBar(getString(R.string.login_success_message, credentials.accessToken))
                     updateUI()
                     showUserProfile()
 

@@ -47,7 +47,6 @@ class ProfileFragment : Fragment() {
 
         if(email==null){
             val email = args.currentUser.email
-            Log.d("CURRENTUSER IN PROFILE", email)
             mUserViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
             mUserViewModel.getUserByEmail(email).observe(viewLifecycleOwner){
                 user = User(it.id,it.email,it.profilePhoto,it.firstName,it.lastName,it.age)

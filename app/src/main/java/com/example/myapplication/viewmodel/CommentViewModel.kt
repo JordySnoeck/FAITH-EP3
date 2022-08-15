@@ -2,6 +2,7 @@ package com.example.myapplication.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.example.myapplication.data.MainDatabase
 import com.example.myapplication.model.Comment
@@ -33,9 +34,9 @@ class CommentViewModel(application: Application): AndroidViewModel(application) 
         }
     }
 
-    fun deleteComment(comment: Comment){
+    fun deleteComment(commentId: Int){
         viewModelScope.launch(Dispatchers.IO) {
-            cRepository.deleteComment(comment)
+            cRepository.deleteComment(commentId)
         }
     }
 
@@ -44,5 +45,9 @@ class CommentViewModel(application: Application): AndroidViewModel(application) 
         viewModelScope.launch(Dispatchers.IO) {
             cRepository.deleteAllComments()
         }
+    }
+
+    fun getCommentsByPostId(postId: Int): LiveData<List<Comment>> {
+        return cRepository.getCommentsFromPost(postId)
     }
 }

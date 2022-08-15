@@ -12,16 +12,16 @@ class CommentRepository(private  val commentDao : CommentDao) {
         commentDao.addComment(comment)
     }
 
-    fun getCommentsFromPost(id : Int) {
-        commentDao.getCommentsFromPost(id)
+    fun getCommentsFromPost(id : Int): LiveData<List<Comment>> {
+       return commentDao.getCommentsFromPost(id)
     }
 
      fun updateComment(comment: Comment){
         commentDao.updateComment(comment)
     }
 
-     fun deleteComment(comment: Comment){
-        commentDao.deleteComment(comment)
+     fun deleteComment(commentId: Int){
+        commentDao.deleteComment(commentId)
     }
 
      fun deleteAllComments() {

@@ -5,27 +5,42 @@
     android:id="@+id/commentLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
     android:padding="1dp">
 
     <TextView
-        android:id="@+id/commentId"
-        android:layout_width="78dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
+        android:id="@+id/commentUser"
+        android:layout_width="93dp"
+        android:layout_height="30dp"
         android:text="TextView"
-        android:textSize="18sp"
+        android:textSize="13sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/commentText"
-        android:layout_width="303dp"
-        android:layout_height="48dp"
+        android:layout_width="210dp"
+        android:layout_height="47dp"
         android:text="TextView"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/commentId"
-        tools:layout_editor_absoluteY="-9dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/commentUser"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="43dp"
+        android:layout_height="33dp"
+        android:layout_marginEnd="16dp"
+        android:background="@android:color/transparent"
+        android:drawableRight="@drawable/ic_baseline_delete_outline_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/commentText"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

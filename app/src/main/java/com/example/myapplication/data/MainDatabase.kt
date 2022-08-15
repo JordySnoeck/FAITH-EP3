@@ -10,7 +10,7 @@ import com.example.myapplication.model.Post
 import com.example.myapplication.model.User
 
 
-@Database(entities = [Comment::class, Post::class, User::class], version = 2 , exportSchema = false)
+@Database(entities = [Comment::class, Post::class, User::class], version = 1 , exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class MainDatabase : RoomDatabase() {
 

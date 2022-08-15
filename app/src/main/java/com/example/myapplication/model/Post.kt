@@ -18,6 +18,8 @@ data class Post (
     val email: String,
     val image: Bitmap,
     val postText: String,
+    val readed: Boolean = false,
+    val answered: Boolean = false,
     val postName: String,
     val favorite: Boolean = false
         ) : Parcelable

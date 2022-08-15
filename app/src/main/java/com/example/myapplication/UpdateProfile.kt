@@ -93,11 +93,9 @@ class UpdateProfile : Fragment() {
         val image = edit_profilePic
         val conImage= (image.drawable as BitmapDrawable).bitmap
 
-        Log.d("EMAILLLLLCURRENTUSER", args.currentUser.email)
 
         if(inputCheck(firstname,lastname,edit_age_txt.text)){
             lifecycleScope.launch {
-                Log.d("TAG", "TEST3")
                 //Create User Object
                 val updatedUser = User(
                     args.currentUser.id,
@@ -109,7 +107,6 @@ class UpdateProfile : Fragment() {
                 )
                 // Update current user
                 mUserViewModel.updateUser(updatedUser)
-                Log.d("TAG", "TEST4")
                 Toast.makeText(requireContext(),"Updated Succesfully", Toast.LENGTH_SHORT).show()
                 //navigate Back
                 val action = UpdateProfileDirections.actionUpdateProfileToProfileFragment(updatedUser)
@@ -128,26 +125,18 @@ class UpdateProfile : Fragment() {
     }
 
     private fun pickImageGallery() {
-        Log.d("IMAGE1","IMAGE1")
         val intent = Intent(Intent.ACTION_PICK)
-        Log.d("IMAGE2","IMAGE2")
         intent.type="image/*"
-        Log.d("IMAGE3","IMAGE3")
         startActivityForResult(intent, IMAGE_REQUEST_CODE)
         Log.d("IMAGE5", intent.data.toString())
-        Log.d("IMAGE4","IMAGE4")
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        Log.d("IMAGE5","IMAGE5")
         super.onActivityResult(requestCode, resultCode, data)
-        Log.d("IMAGE5","IMAGE5")
         if(requestCode == IMAGE_REQUEST_CODE && resultCode == Activity.RESULT_OK){
-            Log.d("IMAGE5","IMAGE5")
             imageView.setImageURI(data?.data)
 
         }
-        Log.d("IMAGE5","IMAGE5")
     }
 
 }

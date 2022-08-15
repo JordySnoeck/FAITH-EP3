@@ -14,8 +14,8 @@ interface CommentDao {
     @Update
     fun updateComment(comment: Comment)
 
-    @Delete
-    fun deleteComment(comment: Comment)
+    @Query("DELETE FROM comment_table WHERE commentId = :key")
+    fun deleteComment(key: Int)
 
     @Query("DELETE FROM comment_table")
     fun deleteAllComments()
@@ -23,7 +23,7 @@ interface CommentDao {
     @Query("SELECT * FROM comment_table ORDER BY commentId ASC")
     fun readAllComments(): LiveData<List<Comment>>
 
-    @Query("SELECT * FROM comment_table WHERE commentId = :key")
+    @Query("SELECT * FROM comment_table WHERE postId = :key")
     fun getCommentsFromPost(key : Int): LiveData<List<Comment>>
 
 }

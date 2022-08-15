@@ -22,6 +22,8 @@ import com.example.myapplication.model.User
 import com.example.myapplication.viewmodel.CommentViewModel
 import com.example.myapplication.viewmodel.PostViewModel
 import com.example.myapplication.viewmodel.UserViewModel
+import kotlinx.android.synthetic.main.custom_comment.view.*
+import kotlinx.android.synthetic.main.fragment_list.*
 import kotlinx.android.synthetic.main.fragment_post_info.*
 import kotlinx.android.synthetic.main.fragment_post_info.view.*
 import kotlinx.android.synthetic.main.fragment_update_post.*
@@ -37,6 +39,7 @@ class PostInfoFragment : Fragment() {
     private lateinit var mPostViewModel: PostViewModel
     private lateinit var mCommentViewModel: CommentViewModel
     lateinit var user: User
+    var email: String? = null
 
 
     override fun onCreateView(
@@ -51,19 +54,18 @@ class PostInfoFragment : Fragment() {
         mUserViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
         val sharedPref = requireActivity().getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
-        val email = sharedPref.getString("email","default value")
+        email = sharedPref.getString("email","default value")
         mUserViewModel.getUserByEmail(email.toString()).observe(viewLifecycleOwner){
             user = User(it.id,it.email,it.profilePhoto,it.firstName,it.lastName,it.age)
-
-
-        val adapter = CommentAdapter()
+        val adapter = CommentAdapter(mCommentViewModel)
         val recyclerView= view.commentSection
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        mCommentViewModel.comments.observe(viewLifecycleOwner, androidx.lifecycle.Observer { comment ->
-            adapter.setData(comment)
-        })
+        mCommentViewModel.getCommentsByPostId(args.currentPost.id).observe(viewLifecycleOwner,
+            { comment ->
+                adapter.setData(comment)
+            })
         }
 
         view.post_user.setText(args.currentPost.user)
@@ -84,11 +86,19 @@ class PostInfoFragment : Fragment() {
         val commentDate =  Date()
 
         val comment = Comment(0,postId,commentText,commentDate,user.id,user.firstName.plus(" ").plus(user.lastName))
-
+        if(email == "jordysnoeckk@hotmail.com"){
+            val updatedPost = Post(args.currentPost.id,args.currentPost.date,args.currentPost.user,args.currentPost.email,args.currentPost.image,args.currentPost.postText,args.currentPost.readed,true,args.currentPost.postName,args.currentPost.favorite)
+            mPostViewModel.updatePost(updatedPost)
+        }
         mCommentViewModel.addComment(comment)
+
         Toast.makeText(requireContext(), "Succesfully added comment", Toast.LENGTH_SHORT).show()
 
+        postComment.text.clear()
+
     }
+
+
 
 
 }
