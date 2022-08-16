@@ -12,6 +12,7 @@ import com.example.myapplication.viewmodel.UserViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
+import androidx.core.view.isVisible
 import coil.ImageLoader
 import coil.request.ImageRequest
 import coil.request.SuccessResult

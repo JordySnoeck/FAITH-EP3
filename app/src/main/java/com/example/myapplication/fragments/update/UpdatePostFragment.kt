@@ -2,6 +2,7 @@ package com.example.myapplication.fragments.update
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
@@ -50,6 +51,7 @@ class UpdatePostFragment : Fragment() {
     private lateinit var mPostViewModel: PostViewModel
     private lateinit var mCommentViewModel: CommentViewModel
     private lateinit var imageView: ImageView
+    var email: String? = null
 
 
 
@@ -64,7 +66,10 @@ class UpdatePostFragment : Fragment() {
         mCommentViewModel = ViewModelProvider(this).get(CommentViewModel::class.java)
         imageView = view.updateimage
 
-        val adapter = CommentAdapter(mCommentViewModel)
+        val sharedPref = requireActivity().getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+        email = sharedPref.getString("email","default value")
+
+        val adapter = CommentAdapter(mCommentViewModel, email)
         val recyclerView= view.commentSection2
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -146,14 +151,10 @@ class UpdatePostFragment : Fragment() {
         if(inputCheck(postText)){
             if(image.drawable != null) {
                 val conImage = (image.drawable as BitmapDrawable).bitmap
-                Log.d("POSTID", args.currentPost.id.toString())
-                Log.d("POSTTEXT", postText)
                 val updatedPost = Post(args.currentPost.id,args.currentPost.date,args.currentPost.user,args.currentPost.email,conImage,postText,args.currentPost.readed,args.currentPost.answered,args.currentPost.postName,args.currentPost.favorite)
                 mPostViewModel.updatePost(updatedPost)
             } else {
                 lifecycleScope.launch {
-                    Log.d("POSTID", args.currentPost.id.toString())
-                    Log.d("POSTTEXT", postText)
                     val updatedPost = Post(args.currentPost.id,args.currentPost.date,args.currentPost.user,args.currentPost.email,getBitmap(),postText,args.currentPost.readed,args.currentPost.answered,args.currentPost.postName,args.currentPost.favorite)
                     mPostViewModel.updatePost(updatedPost)
                 }
@@ -188,26 +189,16 @@ class UpdatePostFragment : Fragment() {
     }
 
     private fun pickImageGallery() {
-        Log.d("IMAGE1","IMAGE1")
         val intent = Intent(Intent.ACTION_PICK)
-        Log.d("IMAGE2","IMAGE2")
         intent.type="image/*"
-        Log.d("IMAGE3","IMAGE3")
         startActivityForResult(intent, UpdateProfile.IMAGE_REQUEST_CODE)
-        Log.d("IMAGE5", intent.data.toString())
-        Log.d("IMAGE4","IMAGE4")
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        Log.d("IMAGE5","IMAGE5")
         super.onActivityResult(requestCode, resultCode, data)
-        Log.d("IMAGE5","IMAGE5")
         if(requestCode == UpdateProfile.IMAGE_REQUEST_CODE && resultCode == Activity.RESULT_OK){
-            Log.d("IMAGE5","IMAGE5")
             imageView.setImageURI(data?.data)
-
         }
-        Log.d("IMAGE5","IMAGE5")
     }
 
     private suspend fun getBitmap(): Bitmap {

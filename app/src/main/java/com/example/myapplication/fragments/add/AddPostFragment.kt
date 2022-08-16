@@ -91,13 +91,7 @@ class AddPostFragment : Fragment() {
         val postText = add_Text.text.toString()
         val image = imagepost
 
-        Log.d("USERNAME",username)
-        Log.d("USERNAME",postText.toString())
-
         if(inputCheck(postText)){
-            Log.d("USERNAME",username)
-            Log.d("USERNAME",postText.toString())
-
             if(image.drawable != null) {
                 val conImage = (image.drawable as BitmapDrawable).bitmap
                 val post = Post(0,date,username,user!!.email,conImage,postText,false, false,"")

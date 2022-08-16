@@ -57,7 +57,7 @@ class PostInfoFragment : Fragment() {
         email = sharedPref.getString("email","default value")
         mUserViewModel.getUserByEmail(email.toString()).observe(viewLifecycleOwner){
             user = User(it.id,it.email,it.profilePhoto,it.firstName,it.lastName,it.age)
-        val adapter = CommentAdapter(mCommentViewModel)
+        val adapter = CommentAdapter(mCommentViewModel, email)
         val recyclerView= view.commentSection
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())

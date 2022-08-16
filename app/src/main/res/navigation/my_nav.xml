@@ -116,6 +116,8 @@
             app:destination="@id/updateProfile" />
         <argument
             android:name="currentUser"
+            android:defaultValue="@null"
+            app:nullable="true"
             app:argType="com.example.myapplication.model.User" />
     </fragment>
     <fragment

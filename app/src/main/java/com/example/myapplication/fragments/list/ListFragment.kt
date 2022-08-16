@@ -1,6 +1,7 @@
 package com.example.myapplication.fragments.list
 
 import android.app.AlertDialog
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
@@ -42,6 +43,7 @@ class ListFragment : Fragment() {
         val recyclerView= view.recyclerview
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
 
         //userViewModel
         mUserViewModel = ViewModelProvider(this).get(UserViewModel::class.java)

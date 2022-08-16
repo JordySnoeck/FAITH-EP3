@@ -48,12 +48,12 @@ class PostAdapter(email: String?, vm : PostViewModel): RecyclerView.Adapter<Post
         if(email == "jordysnoeckk@hotmail.com"){
             holder.itemView.edit_post.isVisible = false
             if(currentPost.readed) {
-                holder.itemView.readed.setText("Readed")
+                holder.itemView.readed.setText("Read")
             } else {
                 holder.itemView.readed.setText("Unreaded")
             }
             if(currentPost.answered){
-                holder.itemView.answered.setText("answered")
+                holder.itemView.answered.setText("Answered")
             } else {
                 holder.itemView.answered.setText("No answers")
             }

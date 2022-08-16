@@ -6,7 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="5dp"
-    android:padding="1dp">
+    android:background="@drawable/back"
+
+    android:padding="1dp"
+    android:windowSoftInputMode="adjustPan">
 
     <TextView
         android:id="@+id/commentUser"
@@ -15,32 +18,124 @@
         android:text="TextView"
         android:textSize="13sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/reactedTo"
+        android:layout_width="93dp"
+        android:layout_height="30dp"
+        android:text="Reacted to"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/commentUser" />
+
+    <TextView
+        android:id="@+id/newuser"
+        android:layout_width="93dp"
+        android:layout_height="30dp"
+        android:text="Jordy snoeck"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reactedTo" />
+
+    <TextView
         android:id="@+id/commentText"
-        android:layout_width="210dp"
+        android:layout_width="192dp"
         android:layout_height="47dp"
         android:text="TextView"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/commentUser"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="190dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="1dp"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/commentUser"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="43dp"
-        android:layout_height="33dp"
-        android:layout_marginEnd="16dp"
+        android:layout_height="26dp"
+        android:layout_marginEnd="4dp"
         android:background="@android:color/transparent"
         android:drawableRight="@drawable/ic_baseline_delete_outline_24"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/commentText"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/openccomment"
+        android:layout_width="42dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="4dp"
+        android:background="@android:color/transparent"
+        android:drawableRight="@drawable/ic_baseline_edit_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button3" />
+
+    <EditText
+        android:id="@+id/enterComment"
+        android:layout_width="195dp"
+        android:layout_height="41dp"
+        android:ems="10"
+        android:hint="enter comment"
+        android:inputType="textPersonName"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.439"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/commentText"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/sendcomment"
+        android:layout_width="61dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="1dp"
+        android:text="send"
+        android:textSize="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.477"
+        app:layout_constraintStart_toEndOf="@+id/enterComment" />
+
+    <Button
+        android:id="@+id/editcomment"
+        android:layout_width="52dp"
+        android:layout_height="29dp"
+        android:text="edit"
+        android:textSize="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.962"
+        app:layout_constraintStart_toEndOf="@+id/editText"
+        app:layout_constraintTop_toBottomOf="@+id/button3" />
+
+    <Button
+        android:id="@+id/react"
+        android:layout_width="45dp"
+        android:layout_height="36dp"
+        android:background="@android:color/transparent"
+        android:drawableRight="@drawable/ic_baseline_message_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.975"
+        app:layout_constraintStart_toEndOf="@+id/commentText"
+        app:layout_constraintTop_toBottomOf="@+id/openccomment"
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

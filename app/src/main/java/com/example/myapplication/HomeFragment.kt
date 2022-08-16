@@ -30,6 +30,7 @@ import com.example.myapplication.domain.AuthTokenSecureFile
 import com.example.myapplication.domain.SecureFileHandle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.activity_main.view.*
 
 
 class HomeFragment : Fragment() {
@@ -40,7 +41,6 @@ class HomeFragment : Fragment() {
     private var cachedCredentials: Credentials? = null
     private var cachedUserProfile: UserProfile? = null
     private val binding get() = _binding!!
-    var logEmail: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -62,6 +62,7 @@ class HomeFragment : Fragment() {
         checkIfToken()
         showUserProfile()
 
+
         return view
 
 
@@ -73,6 +74,11 @@ class HomeFragment : Fragment() {
             Log.d("TOKEN","YESSSSSSSSSSSSSS")
         }
         else {
+            val sharedPreferences = this.requireActivity().getSharedPreferences("sharedPrefs", AppCompatActivity.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            editor.apply(){
+                putString("email", null)
+            }.apply()
             Log.d("NOTOKEN","DAMNNNNNNN")
             Toast.makeText(context, "Token doesn't exist", Toast.LENGTH_SHORT).show()
         }
@@ -136,8 +142,6 @@ class HomeFragment : Fragment() {
 
     private fun showUserProfile() {
         // Guard against showing the profile when no user is logged in
-
-
         val client = AuthenticationAPIClient(account)
         CredentialsManager.getAccessToken(requireContext())?.let {
             client
@@ -147,11 +151,9 @@ class HomeFragment : Fragment() {
                     override fun onFailure(exception: AuthenticationException) {
                         showSnackBar(getString(R.string.general_failure_with_exception_code,
                             exception.getCode()))
-                        Log.d("NOOOOOOUSER", "TEEEEEST")
                     }
 
                     override fun onSuccess(profile: UserProfile) {
-                        Log.d("USER", "TEEEEEST")
                         cachedUserProfile = profile
                         updateUI()
                     }
@@ -162,11 +164,7 @@ class HomeFragment : Fragment() {
 
     private fun updateUI() {
         val token = CredentialsManager.getAccessToken(requireContext())
-        Log.d("UPDATEUI" , token.toString())
         val isLoggedIn = token != null
-
-        Log.d("UPDATEUIDD" , isLoggedIn.toString())
-
         binding.textviewTitle.text = if (isLoggedIn) {
             getString(R.string.logged_in_title)
         } else {
@@ -182,13 +180,20 @@ class HomeFragment : Fragment() {
         binding.textviewUserProfile.text = getString(R.string.user_profile, userName, userEmail)
         val securefile = SecureFileHandle(requireContext(),  AuthTokenSecureFile())
 
-        val sharedPreferences = this.requireActivity().getSharedPreferences("sharedPrefs", AppCompatActivity.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.apply(){
-            putString("email", userEmail)
-        }.apply()
-
-        Log.d("USEREMAIL", userEmail)
+        if(userEmail == ""){
+            val sharedPreferences = this.requireActivity().getSharedPreferences("sharedPrefs", AppCompatActivity.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            editor.apply(){
+                putString("email", null)
+            }.apply()
+        }else {
+            val sharedPreferences = this.requireActivity()
+                .getSharedPreferences("sharedPrefs", AppCompatActivity.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            editor.apply() {
+                putString("email", userEmail)
+            }.apply()
+        }
 
     }
 

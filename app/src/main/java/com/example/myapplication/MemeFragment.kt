@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,7 +10,9 @@ import android.widget.ProgressBar
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import android.graphics.drawable.Drawable
+import android.util.Log
 import android.widget.ImageView
+import androidx.navigation.fragment.findNavController
 import com.android.volley.Request
 import com.android.volley.Response
 import com.bumptech.glide.Glide
@@ -33,11 +36,25 @@ class MemeFragment : Fragment() {
     ): View? {
 
         _binding = FragmentMemeBinding.inflate(inflater, container, false)
-        val view = binding.root
 
         loadMeme()
 
         binding.next.setOnClickListener { loadMeme() }
+        val sharedPref = requireActivity().getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+        val email = sharedPref.getString("email","default value")
+
+        Log.d("ACTIVITY", activity.toString())
+
+        Log.d("MEME", email.toString())
+        Log.d("MEME", "kekekekek")
+
+        Log.d("MEME", email.toString())
+
+
+        if(email == null || email.toString() == "default value"){
+            findNavController().navigate(R.id.homeFragment)
+        }
+        val view = binding.root
 
         return view
     }

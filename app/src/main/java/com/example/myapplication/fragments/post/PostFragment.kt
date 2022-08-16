@@ -2,6 +2,7 @@ package com.example.myapplication.fragments.post
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -33,6 +34,15 @@ class PostFragment : Fragment() {
         mPostViewModel = ViewModelProvider(this).get(PostViewModel::class.java)
         val sharedPref = requireActivity().getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
         val email = sharedPref.getString("email","default value")
+
+
+        Log.d("EMAILLL" , email.toString())
+
+        if(email == null || email.toString() == "default value"){
+            findNavController().navigate(R.id.homeFragment)
+
+        }
+
 
         //RecyclerView
         val adapter = PostAdapter(email, mPostViewModel)

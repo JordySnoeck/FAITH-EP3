@@ -5,6 +5,7 @@
     android:id="@+id/postLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:windowSoftInputMode="adjustPan"
     android:background="@drawable/back"
     android:paddingLeft="24dp">
 

@@ -40,7 +40,6 @@ class UpdateFragment : Fragment() {
         view.updateAge_et.setText(args.currentUser.age.toString())
 
         view.update_btn.setOnClickListener{
-            Log.d("TAG", "TEST1")
             updateItem()
         }
 
@@ -55,15 +54,12 @@ class UpdateFragment : Fragment() {
         val firstName = updateFirstName_et.text.toString()
         val lastName = updateLastName_et.text.toString()
         val age = Integer.parseInt(updateAge_et.text.toString())
-        Log.d("TAG", "TEST2")
 
         if(inputCheck(firstName,lastName,updateAge_et.text)){
-            Log.d("TAG", "TEST3")
             //Create User Object
             val updatedUser = User(args.currentUser.id,args.currentUser.email,args.currentUser.profilePhoto,firstName,lastName,age)
             // Update current user
             mUserViewModel.updateUser(updatedUser)
-            Log.d("TAG", "TEST4")
             Toast.makeText(requireContext(),"Updated Succesfully", Toast.LENGTH_SHORT).show()
             //navigate Back
             findNavController().navigate(R.id.action_updateFragment_to_listFragment)
