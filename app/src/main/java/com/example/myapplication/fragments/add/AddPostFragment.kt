@@ -32,7 +32,9 @@ import com.example.myapplication.model.User
 import com.example.myapplication.viewmodel.PostViewModel
 import com.example.myapplication.viewmodel.UserViewModel
 import kotlinx.android.synthetic.main.fragment_add_post.*
+import kotlinx.android.synthetic.main.fragment_add_post.imagepost
 import kotlinx.android.synthetic.main.fragment_add_post.view.*
+import kotlinx.android.synthetic.main.fragment_post_info.*
 import kotlinx.android.synthetic.main.fragment_profile.view.*
 import kotlinx.android.synthetic.main.fragment_update_profile.*
 import kotlinx.android.synthetic.main.fragment_update_profile.view.*
@@ -90,15 +92,16 @@ class AddPostFragment : Fragment() {
         val username = user?.firstName.plus(" ").plus(user?.lastName)
         val postText = add_Text.text.toString()
         val image = imagepost
+        val link = add_Link.text.toString()
 
         if(inputCheck(postText)){
             if(image.drawable != null) {
                 val conImage = (image.drawable as BitmapDrawable).bitmap
-                val post = Post(0,date,username,user!!.email,conImage,postText,false, false,"")
+                val post = Post(0,date,username,user!!.email,conImage,postText,link,false, false,"")
                 mPostViewModel.addPost(post)
             } else {
                 lifecycleScope.launch {
-                    val post = Post(0,date,username,user!!.email,getBitmap(),postText,false , false , "")
+                    val post = Post(0,date,username,user!!.email,getBitmap(),postText,link,false , false , "")
                     mPostViewModel.addPost(post)
                 }
             }

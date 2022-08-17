@@ -93,16 +93,30 @@
         app:layout_constraintStart_toEndOf="@+id/like_post"
         app:layout_constraintTop_toBottomOf="@+id/updateimagepost" />
 
+
+    <EditText
+        android:id="@+id/editLink"
+        android:layout_width="353dp"
+        android:layout_height="31dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="0dp"
+        android:text=""
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.534"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/update_Text" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/commentSection2"
         android:layout_width="353dp"
         android:layout_height="181dp"
+        android:layout_marginTop="0dp"
         android:background="@drawable/custom_input"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/update_Text" />
+        app:layout_constraintTop_toBottomOf="@+id/editLink" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

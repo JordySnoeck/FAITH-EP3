@@ -69,7 +69,7 @@ class UpdatePostFragment : Fragment() {
         val sharedPref = requireActivity().getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
         email = sharedPref.getString("email","default value")
 
-        val adapter = CommentAdapter(mCommentViewModel, email)
+        val adapter = CommentAdapter(mCommentViewModel, email, "")
         val recyclerView= view.commentSection2
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -82,6 +82,7 @@ class UpdatePostFragment : Fragment() {
 
         view.update_Text.setText(args.currentPost.postText)
         view.updateimage.setImageBitmap(args.currentPost.image)
+        view.editLink.setText(args.currentPost.link)
         //view.update_User.setText(args.currentPost.user)
 
         view.btn_del_post.setOnClickListener{
@@ -119,6 +120,7 @@ class UpdatePostFragment : Fragment() {
                 args.currentPost.email,
                 args.currentPost.image,
                 args.currentPost.postText,
+                args.currentPost.link,
                 args.currentPost.readed,
                 args.currentPost.answered,
                 args.currentPost.postName,
@@ -134,6 +136,7 @@ class UpdatePostFragment : Fragment() {
                 args.currentPost.email,
                 args.currentPost.image,
                 args.currentPost.postText,
+                args.currentPost.link,
                 args.currentPost.readed,
                 args.currentPost.answered,
                 args.currentPost.postName,
@@ -147,15 +150,16 @@ class UpdatePostFragment : Fragment() {
     private fun updatePost(){
         val postText = update_Text.text.toString()
         val image = updateimage
+        val link = editLink.text.toString()
 
         if(inputCheck(postText)){
             if(image.drawable != null) {
                 val conImage = (image.drawable as BitmapDrawable).bitmap
-                val updatedPost = Post(args.currentPost.id,args.currentPost.date,args.currentPost.user,args.currentPost.email,conImage,postText,args.currentPost.readed,args.currentPost.answered,args.currentPost.postName,args.currentPost.favorite)
+                val updatedPost = Post(args.currentPost.id,args.currentPost.date,args.currentPost.user,args.currentPost.email,conImage,postText,link,args.currentPost.readed,args.currentPost.answered,args.currentPost.postName,args.currentPost.favorite)
                 mPostViewModel.updatePost(updatedPost)
             } else {
                 lifecycleScope.launch {
-                    val updatedPost = Post(args.currentPost.id,args.currentPost.date,args.currentPost.user,args.currentPost.email,getBitmap(),postText,args.currentPost.readed,args.currentPost.answered,args.currentPost.postName,args.currentPost.favorite)
+                    val updatedPost = Post(args.currentPost.id,args.currentPost.date,args.currentPost.user,args.currentPost.email,getBitmap(),postText,link,args.currentPost.readed,args.currentPost.answered,args.currentPost.postName,args.currentPost.favorite)
                     mPostViewModel.updatePost(updatedPost)
                 }
             }

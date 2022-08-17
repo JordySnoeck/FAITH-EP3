@@ -1,6 +1,7 @@
 package com.example.myapplication.fragments.post
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -58,9 +59,13 @@ class PostAdapter(email: String?, vm : PostViewModel): RecyclerView.Adapter<Post
                 holder.itemView.answered.setText("No answers")
             }
         }
+
         holder.itemView.postLayout.setOnClickListener{
-            val updatedPost = Post(currentPost.id,currentPost.date,currentPost.user,currentPost.email,currentPost.image,currentPost.postText,true,currentPost.answered,currentPost.postName,currentPost.favorite)
-            vm.updatePost(updatedPost)
+            Log.d("EMAIL READED ", email.toString())
+            if(email == "jordysnoeckk@hotmail.com"){
+                val updatedPost = Post(currentPost.id,currentPost.date,currentPost.user,currentPost.email,currentPost.image,currentPost.postText,currentPost.link,true,currentPost.answered,currentPost.postName,currentPost.favorite)
+                vm.updatePost(updatedPost)
+            }
             val action = PostFragmentDirections.actionPostFragmentToPostInfoFragment2(currentPost)
             holder.itemView.findNavController().navigate(action)
         }

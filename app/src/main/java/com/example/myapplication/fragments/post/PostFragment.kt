@@ -35,12 +35,8 @@ class PostFragment : Fragment() {
         val sharedPref = requireActivity().getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
         val email = sharedPref.getString("email","default value")
 
-
-        Log.d("EMAILLL" , email.toString())
-
         if(email == null || email.toString() == "default value"){
             findNavController().navigate(R.id.homeFragment)
-
         }
 
 
@@ -55,7 +51,6 @@ class PostFragment : Fragment() {
         if(email == "jordysnoeckk@hotmail.com") {
             view.floatingActionButton2.isVisible = false
         }
-
         if(email == "jordysnoeckk@hotmail.com"){
             mPostViewModel.posts.observe(viewLifecycleOwner, { post ->
                 adapter.setData(post)

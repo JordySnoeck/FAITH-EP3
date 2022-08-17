@@ -21,11 +21,12 @@ import kotlinx.android.synthetic.main.custom_post.view.*
 import kotlin.math.log
 
 
-class CommentAdapter(vm: CommentViewModel, email : String?): RecyclerView.Adapter<CommentAdapter.MyViewHolder>() {
+class CommentAdapter(vm: CommentViewModel, email : String?, username: String): RecyclerView.Adapter<CommentAdapter.MyViewHolder>() {
 
 
     private var commentList = emptyList<Comment>()
     private var vm: CommentViewModel = vm
+    private var username : String = username
 
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
 
@@ -44,9 +45,20 @@ class CommentAdapter(vm: CommentViewModel, email : String?): RecyclerView.Adapte
         val currentComment = commentList[position]
         holder.itemView.commentUser.text = currentComment.username
         holder.itemView.commentText.text = currentComment.commentText
+        holder.itemView.newuser.text = currentComment.reactedTo
+        holder.itemView.react.isVisible = true
+        holder.itemView.openccomment.isVisible = false
+        holder.itemView.button3.isVisible = false
 
         holder.itemView.button3.setOnClickListener{
             deleteComment(currentComment.commentId)
+        }
+
+
+        if(username == currentComment.username){
+            holder.itemView.react.isVisible = false
+            holder.itemView.openccomment.isVisible = true
+            holder.itemView.button3.isVisible = true
         }
 
         holder.itemView.editcomment.setOnClickListener{
@@ -63,6 +75,11 @@ class CommentAdapter(vm: CommentViewModel, email : String?): RecyclerView.Adapte
         holder.itemView.enterComment.isVisible = false
         holder.itemView.editText.isVisible = false
         holder.itemView.editcomment.isVisible = false
+
+        if(!currentComment.reaction){
+            holder.itemView.reactedTo.isVisible = false
+            holder.itemView.newuser.isVisible = false
+        }
 
         holder.itemView.react.setOnClickListener{
             holder.itemView.sendcomment.isVisible = true
@@ -105,13 +122,15 @@ class CommentAdapter(vm: CommentViewModel, email : String?): RecyclerView.Adapte
     }
 
     private fun editComment(editcom : String, com : Comment){
-        val comment = Comment(com.commentId,com.postId,editcom,com.commentDate,com.userId,com.username)
+        val comment = Comment(com.commentId,com.postId,editcom,com.commentDate,com.reaction, com.reactedTo, com.userId,com.username)
         vm.updateComment(comment)
 
     }
 
     private fun addComment(editcom : String, com : Comment) {
-        val comment = Comment(0,com.postId,editcom,com.commentDate,com.userId,com.username)
+        Log.d("USERNAMECOMMENT", com.username)
+        Log.d("USERNAME LOGGED IN ", username)
+        val comment = Comment(0,com.postId,editcom,com.commentDate,true, com.username,com.userId,username)
         vm.addComment(comment)
     }
 }

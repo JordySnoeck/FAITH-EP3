@@ -178,7 +178,6 @@ class HomeFragment : Fragment() {
         val userName = cachedUserProfile?.name ?: ""
         val userEmail = cachedUserProfile?.email ?: ""
         binding.textviewUserProfile.text = getString(R.string.user_profile, userName, userEmail)
-        val securefile = SecureFileHandle(requireContext(),  AuthTokenSecureFile())
 
         if(userEmail == ""){
             val sharedPreferences = this.requireActivity().getSharedPreferences("sharedPrefs", AppCompatActivity.MODE_PRIVATE)

@@ -15,6 +15,8 @@ data class Comment (
     val postId: Int,
     val commentText : String,
     val commentDate : Date,
+    val reaction : Boolean,
+    val reactedTo: String,
     val userId : Int,
     val username : String
         ) : Parcelable
