@@ -27,4 +27,9 @@ interface PostDao {
     @Query("SELECT * FROM post_table WHERE email = :key")
     fun readPostFromUser(key: String): LiveData<List<Post>>
 
+    @Query("SELECT COUNT(id) FROM post_table")
+    fun getCount():Int
+
+    @Query("SELECT * FROM post_table  WHERE id = :postId")
+    fun readPostWithId(postId: Int?): LiveData<Post>
 }

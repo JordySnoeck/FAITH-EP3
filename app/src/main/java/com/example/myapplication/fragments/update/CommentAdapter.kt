@@ -28,6 +28,7 @@ class CommentAdapter(vm: CommentViewModel, email : String?, username: String): R
     private var vm: CommentViewModel = vm
     private var username : String = username
 
+
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
 
     }
@@ -128,9 +129,8 @@ class CommentAdapter(vm: CommentViewModel, email : String?, username: String): R
     }
 
     private fun addComment(editcom : String, com : Comment) {
-        Log.d("USERNAMECOMMENT", com.username)
-        Log.d("USERNAME LOGGED IN ", username)
         val comment = Comment(0,com.postId,editcom,com.commentDate,true, com.username,com.userId,username)
         vm.addComment(comment)
+
     }
 }

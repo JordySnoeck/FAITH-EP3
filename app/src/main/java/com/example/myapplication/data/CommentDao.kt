@@ -3,6 +3,7 @@ package com.example.myapplication.data
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.myapplication.model.Comment
+import com.example.myapplication.model.Post
 
 
 @Dao
@@ -25,5 +26,11 @@ interface CommentDao {
 
     @Query("SELECT * FROM comment_table WHERE postId = :key")
     fun getCommentsFromPost(key : Int): LiveData<List<Comment>>
+
+    @Query("SELECT COUNT(commentId) FROM comment_table")
+    fun getCount():Int
+
+    @Query("SELECT * FROM comment_table  WHERE commentId = :commentId")
+    fun getCommentById(commentId: Int?): LiveData<Comment>
 
 }
