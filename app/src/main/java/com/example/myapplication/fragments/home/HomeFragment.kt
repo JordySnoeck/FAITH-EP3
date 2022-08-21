@@ -1,36 +1,25 @@
-package com.example.myapplication
+package com.example.myapplication.fragments.home
 
-import android.app.Activity
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.text.method.TextKeyListener.clear
 import android.util.Log
 import android.view.*
-import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
-import com.example.myapplication.databinding.ActivityMainBinding
 import androidx.core.view.isVisible
 import com.auth0.android.Auth0
 import com.auth0.android.authentication.AuthenticationAPIClient
 import com.auth0.android.authentication.AuthenticationException
 import com.auth0.android.callback.Callback
-import com.auth0.android.management.ManagementException
-import com.auth0.android.management.UsersAPIClient
 import com.auth0.android.provider.WebAuthProvider
 import com.auth0.android.result.Credentials
 import com.auth0.android.result.UserProfile
+import com.example.myapplication.CredentialsManager
+import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentHomeBinding
-import com.example.myapplication.domain.AuthTokenSecureFile
-import com.example.myapplication.domain.SecureFileHandle
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.activity_main.view.*
 
 
 class HomeFragment : Fragment() {
@@ -71,7 +60,7 @@ class HomeFragment : Fragment() {
     private fun checkIfToken(){
         val token = CredentialsManager.getAccessToken(requireContext())
         if(token != null){
-            Log.d("TOKEN","YESSSSSSSSSSSSSS")
+            Log.d("TOKEN","YES")
         }
         else {
             val sharedPreferences = this.requireActivity().getSharedPreferences("sharedPrefs", AppCompatActivity.MODE_PRIVATE)
@@ -79,7 +68,6 @@ class HomeFragment : Fragment() {
             editor.apply(){
                 putString("email", null)
             }.apply()
-            Log.d("NOTOKEN","DAMNNNNNNN")
             Toast.makeText(context, "Token doesn't exist", Toast.LENGTH_SHORT).show()
         }
     }
@@ -126,14 +114,15 @@ class HomeFragment : Fragment() {
 
                 override fun onFailure(exception: AuthenticationException) {
                     updateUI()
-                    showSnackBar(getString(R.string.general_failure_with_exception_code,
+                    showSnackBar(getString(
+                        R.string.general_failure_with_exception_code,
                         exception.getCode()))
                 }
 
                 override fun onSuccess(payload: Void?) {
                     cachedCredentials = null
                     cachedUserProfile = null
-                    CredentialsManager.saveCredentials(requireContext(),cachedCredentials)
+                    CredentialsManager.saveCredentials(requireContext(), cachedCredentials)
                     updateUI()
                 }
 
@@ -149,7 +138,8 @@ class HomeFragment : Fragment() {
                 .start(object : Callback<UserProfile, AuthenticationException> {
 
                     override fun onFailure(exception: AuthenticationException) {
-                        showSnackBar(getString(R.string.general_failure_with_exception_code,
+                        showSnackBar(getString(
+                            R.string.general_failure_with_exception_code,
                             exception.getCode()))
                     }
 

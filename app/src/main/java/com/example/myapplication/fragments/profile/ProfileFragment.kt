@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.fragments.profile
 
 import android.content.Context
 import android.os.Bundle
@@ -7,17 +7,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.myapplication.domain.AuthTokenSecureFile
-import com.example.myapplication.domain.SecureFileHandle
+import com.example.myapplication.R
 import com.example.myapplication.model.User
 import com.example.myapplication.viewmodel.UserViewModel
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.fragment_profile.view.*
 
 
@@ -46,7 +42,6 @@ class ProfileFragment : Fragment() {
 
         val sharedPref = requireActivity().getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
         val email = sharedPref.getString("email","default value")
-        Log.d("DICK", email.toString())
         if(email == null || email.toString() == "default value"){
             findNavController().navigate(R.id.homeFragment)
         }

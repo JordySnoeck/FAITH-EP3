@@ -3,8 +3,6 @@ package com.example.myapplication.data
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.myapplication.model.Comment
-import com.example.myapplication.model.Post
-
 
 @Dao
 interface CommentDao {

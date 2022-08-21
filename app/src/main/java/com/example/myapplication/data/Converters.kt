@@ -3,12 +3,7 @@ package com.example.myapplication.data
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.room.TypeConverter
-import com.example.myapplication.model.Post
-import com.example.myapplication.model.User
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import java.io.ByteArrayOutputStream
-import java.lang.reflect.Type
 import java.util.*
 
 class Converters {

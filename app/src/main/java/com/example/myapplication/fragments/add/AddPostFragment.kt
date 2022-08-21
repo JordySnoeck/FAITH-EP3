@@ -12,21 +12,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import coil.ImageLoader
 import coil.request.ImageRequest
 import coil.request.SuccessResult
 import com.example.myapplication.R
-import com.example.myapplication.UpdateProfile
-import com.example.myapplication.UpdateProfileDirections
-import com.example.myapplication.domain.AuthTokenSecureFile
-import com.example.myapplication.domain.SecureFileHandle
+import com.example.myapplication.fragments.profile.UpdateProfile
 import com.example.myapplication.model.Post
 import com.example.myapplication.model.User
 import com.example.myapplication.viewmodel.PostViewModel
@@ -34,12 +29,7 @@ import com.example.myapplication.viewmodel.UserViewModel
 import kotlinx.android.synthetic.main.fragment_add_post.*
 import kotlinx.android.synthetic.main.fragment_add_post.imagepost
 import kotlinx.android.synthetic.main.fragment_add_post.view.*
-import kotlinx.android.synthetic.main.fragment_post_info.*
-import kotlinx.android.synthetic.main.fragment_profile.view.*
-import kotlinx.android.synthetic.main.fragment_update_profile.*
-import kotlinx.android.synthetic.main.fragment_update_profile.view.*
 import kotlinx.coroutines.launch
-import okhttp3.internal.userAgent
 import java.util.*
 
 class AddPostFragment : Fragment() {
@@ -119,26 +109,17 @@ class AddPostFragment : Fragment() {
 
 
     private fun pickImageGallery() {
-        Log.d("IMAGE1","IMAGE1")
         val intent = Intent(Intent.ACTION_PICK)
-        Log.d("IMAGE2","IMAGE2")
         intent.type="image/*"
-        Log.d("IMAGE3","IMAGE3")
         startActivityForResult(intent, UpdateProfile.IMAGE_REQUEST_CODE)
-        Log.d("IMAGE5", intent.data.toString())
-        Log.d("IMAGE4","IMAGE4")
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        Log.d("IMAGE5","IMAGE5")
         super.onActivityResult(requestCode, resultCode, data)
-        Log.d("IMAGE5","IMAGE5")
         if(requestCode == UpdateProfile.IMAGE_REQUEST_CODE && resultCode == Activity.RESULT_OK){
-            Log.d("IMAGE5","IMAGE5")
             imageView.setImageURI(data?.data)
 
         }
-        Log.d("IMAGE5","IMAGE5")
     }
 
     private suspend fun getBitmap(): Bitmap {

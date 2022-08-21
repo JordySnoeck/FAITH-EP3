@@ -25,7 +25,6 @@ object CredentialsManager {
      * @property credentials The credentials of the user
      */
     fun saveCredentials(context: Context, credentials: Credentials?) {
-        Log.d("CREDENTIALMANAGER" , credentials.toString())
         val masterKeyAlias = KeyGenParameterSpec.Builder(
             MasterKey.DEFAULT_MASTER_KEY_ALIAS,
             KeyProperties.PURPOSE_ENCRYPT or KeyProperties.PURPOSE_DECRYPT

@@ -70,7 +70,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.myapplication.HomeFragment"
+        android:name="com.example.myapplication.fragments.home.HomeFragment"
         android:label="Homescreen"
         tools:layout="@layout/fragment_home" >
         <action
@@ -91,7 +91,7 @@
     </fragment>
     <fragment
         android:id="@+id/postInfoFragment"
-        android:name="com.example.myapplication.PostInfoFragment"
+        android:name="com.example.myapplication.fragments.post.PostInfoFragment"
         android:label="Post information"
         tools:layout="@layout/fragment_post_info">
         <action
@@ -103,12 +103,12 @@
     </fragment>
     <fragment
         android:id="@+id/memeFragment"
-        android:name="com.example.myapplication.MemeFragment"
+        android:name="com.example.myapplication.fragments.meme.MemeFragment"
         android:label="Memes"
         tools:layout="@layout/fragment_meme" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.myapplication.ProfileFragment"
+        android:name="com.example.myapplication.fragments.profile.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -122,7 +122,7 @@
     </fragment>
     <fragment
         android:id="@+id/updateProfile"
-        android:name="com.example.myapplication.UpdateProfile"
+        android:name="com.example.myapplication.fragments.profile.UpdateProfile"
         android:label="Edit profile"
         tools:layout="@layout/fragment_update_profile">
         <argument

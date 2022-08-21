@@ -61,7 +61,6 @@ class PostAdapter(email: String?, vm : PostViewModel): RecyclerView.Adapter<Post
         }
 
         holder.itemView.postLayout.setOnClickListener{
-            Log.d("EMAIL READED ", email.toString())
             if(email == "jordysnoeckk@hotmail.com"){
                 val updatedPost = Post(currentPost.id,currentPost.date,currentPost.user,currentPost.email,currentPost.image,currentPost.postText,currentPost.link,true,currentPost.answered,currentPost.postName,currentPost.favorite)
                 vm.updatePost(updatedPost)

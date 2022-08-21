@@ -8,15 +8,12 @@ import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -26,22 +23,14 @@ import coil.ImageLoader
 import coil.request.ImageRequest
 import coil.request.SuccessResult
 import com.example.myapplication.R
-import com.example.myapplication.UpdateProfile
-import com.example.myapplication.fragments.list.ListAdapter
-import com.example.myapplication.model.Comment
+import com.example.myapplication.fragments.profile.UpdateProfile
 import com.example.myapplication.model.Post
 import com.example.myapplication.viewmodel.CommentViewModel
 import com.example.myapplication.viewmodel.PostViewModel
-import com.example.myapplication.viewmodel.UserViewModel
-import kotlinx.android.synthetic.main.fragment_add_post.*
-import kotlinx.android.synthetic.main.fragment_add_post.view.*
-import kotlinx.android.synthetic.main.fragment_list.view.*
 import kotlinx.android.synthetic.main.fragment_update_post.*
 import kotlinx.android.synthetic.main.fragment_update_post.view.*
 import kotlinx.android.synthetic.main.fragment_update_post.view.button2
-import kotlinx.android.synthetic.main.fragment_update_profile.*
 import kotlinx.coroutines.launch
-import java.util.*
 
 
 class UpdatePostFragment : Fragment() {
@@ -83,7 +72,6 @@ class UpdatePostFragment : Fragment() {
         view.update_Text.setText(args.currentPost.postText)
         view.updateimage.setImageBitmap(args.currentPost.image)
         view.editLink.setText(args.currentPost.link)
-        //view.update_User.setText(args.currentPost.user)
 
         view.btn_del_post.setOnClickListener{
             deletePost()

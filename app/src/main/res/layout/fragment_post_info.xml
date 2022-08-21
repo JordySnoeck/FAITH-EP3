@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="24dp"
     android:windowSoftInputMode="adjustPan"
-    tools:context=".PostInfoFragment">
+    tools:context=".fragments.post.PostInfoFragment">
 
     <!--  <EditText
         android:id="@+id/update_User"

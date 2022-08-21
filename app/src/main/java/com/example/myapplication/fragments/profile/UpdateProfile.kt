@@ -1,8 +1,7 @@
-package com.example.myapplication
+package com.example.myapplication.fragments.profile
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.text.Editable
@@ -18,25 +17,13 @@ import com.example.myapplication.R
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import coil.ImageLoader
-import coil.request.ImageRequest
-import coil.request.SuccessResult
-import com.auth0.android.result.Credentials
-import com.example.myapplication.domain.AuthTokenSecureFile
-import com.example.myapplication.domain.SecureFileHandle
 import com.example.myapplication.model.User
 import com.example.myapplication.viewmodel.UserViewModel
-import kotlinx.android.synthetic.main.fragment_update.*
 import kotlinx.android.synthetic.main.fragment_update_profile.*
 import kotlinx.android.synthetic.main.fragment_update_profile.view.*
-import java.util.*
-import android.os.Environment
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
-import java.io.File
-import java.io.FileOutputStream
 
 
 class UpdateProfile : Fragment() {
@@ -128,7 +115,6 @@ class UpdateProfile : Fragment() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type="image/*"
         startActivityForResult(intent, IMAGE_REQUEST_CODE)
-        Log.d("IMAGE5", intent.data.toString())
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

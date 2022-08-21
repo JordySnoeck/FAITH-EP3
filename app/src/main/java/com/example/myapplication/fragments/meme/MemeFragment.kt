@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.fragments.meme
 
 import android.content.Context
 import android.os.Bundle
@@ -20,6 +20,7 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentMemeBinding
 
 
@@ -42,13 +43,6 @@ class MemeFragment : Fragment() {
         binding.next.setOnClickListener { loadMeme() }
         val sharedPref = requireActivity().getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
         val email = sharedPref.getString("email","default value")
-
-        Log.d("ACTIVITY", activity.toString())
-
-        Log.d("MEME", email.toString())
-        Log.d("MEME", "kekekekek")
-
-        Log.d("MEME", email.toString())
 
 
         if(email == null || email.toString() == "default value"){
