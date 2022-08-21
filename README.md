@@ -13,9 +13,6 @@ Er is ook een meme afdeling waar zowel begeleiders als jongeren even kunnen onts
 * Begeleider: jordysnoeckk@hotmail.com wachtwoord: Niemand1
 * Jongeren: kind1@hotmail.com wachtwoord: Niemand1 / kind2@hotmail.com wachtwoord: Niemand1
 
-### Dependencies
-
-* Om het project te starten:
 
 
 ### Emulator
