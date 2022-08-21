@@ -23,7 +23,7 @@ Er is ook een meme afdeling waar zowel begeleiders als jongeren even kunnen onts
 
 ### Testen
 
-Er zijn enkele unit-tests gemaakt.
+* Er zijn enkele unit-tests gemaakt.
 
 ## Authors
 
